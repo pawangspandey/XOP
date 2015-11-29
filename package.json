@@ -1,7 +1,10 @@
 {
   "name": "backendXOP",
   "private": true,
-  "version": "0.0.0",
+  "engines": {
+    "node": "4.1.1"
+  },
+  "version": "1.0.0",
   "description": "a Sails application",
   "keywords": [],
   "dependencies": {
