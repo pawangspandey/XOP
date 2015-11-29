@@ -55,8 +55,14 @@ module.exports = {
     email : {
       type : 'email',
     },
-    img : {
+    OTP : {
       type : 'string',
+    },
+    otpstatus : {
+      type : 'boolean',
+    },
+    digi_sign : {
+      type : 'text',
     }
   }
 };

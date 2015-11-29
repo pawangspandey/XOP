@@ -65,7 +65,7 @@ find : function(req,res){
 
 	query.then(function(data){
 		if(!data || data.length === 0){
-			res.ok({status:'2' , message : "Requested Resident Not Found"});
+			res.json(404,{status:'2' , message : "Requested Resident Not Found"});
 		}else{
 			res.ok({status:'3' , data : data , message : "Resident Found"})
 		}
@@ -79,21 +79,79 @@ update : function(req,res){
 	var data = req.body;
 	var uid = data.uid;
 	delete data.uid;
-	var hasEmailPro = false;
-	if(data.hasOwnProperty('email')){
-		hasEmailPro = true;
-	}
+
 	Resident
 		.update({uid:uid},data)
 			.then(function(resident){
 
 						res.ok({status : "4" , message : "update suuceefully" , data : data})
-					
+
 			})
 				.catch(function(error){
 					res.serverError(error);
 				});
 
+
+},
+
+emailVerify  : function(req ,res){
+	var uid = req.param('uid');
+	var email = req.param('email');
+	Resident
+		.findOne({uid:uid , email : email})
+			.then(function(data){
+				if(!data){
+					res.json(404,{status : "2" , message : "resident's email not present" });
+				}else{
+					 var OTP = uniqueId.generateOTP();
+					var mailOptions =  {
+					from: 'System <no-repay@barcodeclays.com>', // sender address
+					 to: data.email, // list of receivers
+					subject: 'OTP Code', // Subject line
+					text: 'This is your OTP Code.', // plaintext body
+					html: '<b>'+OTP + ' </b>' // html body
+				 };
+				 mailer.sendMail(mailOptions,function(error , mail){
+					 if(error){
+						 res.serverError({message:error});
+					 }else {
+						 data.OTP = OTP;
+						 data.otpstatus = true;
+						 data.save(function(err , dt){
+							 	res.ok({message : 'Please Check Your Mail For OTP'});
+						 })
+					 }
+				 });
+				}
+			})
+			.catch(function(error){
+				res.serverError({message:error});
+			});
+},
+
+otpVerify : function(req ,res){
+	var uid = req.param('uid');
+	var OTP = req.param('otp');
+
+	Resident.findOne({uid:uid,OTP:OTP,otpstatus:true}).then(function(data){
+		if(!data){
+			res.json(401, {message : "Otp not matched"});
+		}else{
+
+			 var sign = certificats.sign(data);
+			var verifyed = certificats.verify(data,sign);
+			if(verifyed){
+				console.log(sign);
+			}
+				data.otp  =  false;
+				data.save();
+				res.ok({message:'Thank you for verifing, your certificat creating soon' });
+			// }
+
+		}
+	}).catch(function(error){
+		res.serverError({message:error});
+	});
 
 }
 

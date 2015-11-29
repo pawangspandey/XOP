@@ -42,8 +42,12 @@
         "state": "Maharashtra",
         "pc": "421501",
         "createdAt": "2015-11-29T03:45:22.684Z",
-        "updatedAt": "2015-11-29T03:45:22.684Z",
-        "id": 3
+        "updatedAt": "2015-11-29T10:09:24.248Z",
+        "id": 3,
+        "email": "lobhas.ingle@gmail.com",
+        "OTP": "1fb89d",
+        "otpstatus": true,
+        "otp": false
       }
     ]
   },
@@ -96,8 +100,14 @@
       "email": {
         "type": "string"
       },
-      "img": {
+      "OTP": {
         "type": "string"
+      },
+      "otpstatus": {
+        "type": "boolean"
+      },
+      "digi_sign": {
+        "type": "text"
       },
       "id": {
         "type": "integer",

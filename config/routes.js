@@ -39,7 +39,8 @@ module.exports.routes = {
   'POST /residents' : "ResidentController.findOrCreate",
   'GET /residents/:uid?' : "ResidentController.find",
   'PUT /residents' : "ResidentController.update",
-
+  'POST /verifyemail' : "ResidentController.emailVerify",
+  'POST /verifyotp' : "ResidentController.otpVerify"
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *
