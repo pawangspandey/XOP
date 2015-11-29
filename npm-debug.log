@@ -1,0 +1,665 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/usr/local/bin/node',
+1 verbose cli   '/usr/local/bin/npm',
+1 verbose cli   'install',
+1 verbose cli   '-g',
+1 verbose cli   'faced' ]
+2 info using npm@2.14.4
+3 info using node@v4.1.1
+4 verbose install initial load of /usr/local/lib/package.json
+5 verbose readDependencies loading dependencies from /usr/local/lib/package.json
+6 silly cache add args [ 'faced', null ]
+7 verbose cache add spec faced
+8 silly cache add parsed spec Result {
+8 silly cache add   raw: 'faced',
+8 silly cache add   scope: null,
+8 silly cache add   name: 'faced',
+8 silly cache add   rawSpec: '',
+8 silly cache add   spec: '*',
+8 silly cache add   type: 'range' }
+9 silly addNamed faced@*
+10 verbose addNamed "*" is a valid semver range for faced
+11 silly addNameRange { name: 'faced', range: '*', hasData: false }
+12 silly mapToRegistry name faced
+13 silly mapToRegistry using default registry
+14 silly mapToRegistry registry https://registry.npmjs.org/
+15 silly mapToRegistry uri https://registry.npmjs.org/faced
+16 verbose addNameRange registry:https://registry.npmjs.org/faced not in flight; fetching
+17 verbose request uri https://registry.npmjs.org/faced
+18 verbose request no auth needed
+19 info attempt registry request try #1 at 1:05:06 AM
+20 verbose request id 7ee45851c5db3f4d
+21 verbose etag "BPFUAYL8V30CP8PAKXWSGOAMO"
+22 http request GET https://registry.npmjs.org/faced
+23 http 304 https://registry.npmjs.org/faced
+24 silly get cb [ 304,
+24 silly get   { date: 'Sat, 28 Nov 2015 19:35:07 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     'cache-control': 'max-age=60',
+24 silly get     etag: '"BPFUAYL8V30CP8PAKXWSGOAMO"',
+24 silly get     age: '0',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-jfk1021-JFK',
+24 silly get     'x-cache': 'HIT',
+24 silly get     'x-cache-hits': '1',
+24 silly get     'x-timer': 'S1448739307.414049,VS0,VE19',
+24 silly get     vary: 'Accept' } ]
+25 verbose etag https://registry.npmjs.org/faced from cache
+26 verbose get saving faced to /home/pawan/.npm/registry.npmjs.org/faced/.cache.json
+27 silly addNameRange number 2 { name: 'faced', range: '*', hasData: true }
+28 silly addNameRange versions [ 'faced',
+28 silly addNameRange   [ '0.0.1',
+28 silly addNameRange     '0.0.2',
+28 silly addNameRange     '1.0.0',
+28 silly addNameRange     '1.0.1',
+28 silly addNameRange     '1.1.0',
+28 silly addNameRange     '1.1.1',
+28 silly addNameRange     '1.1.2',
+28 silly addNameRange     '1.1.3' ] ]
+29 silly addNamed faced@1.1.3
+30 verbose addNamed "1.1.3" is a plain semver version for faced
+31 silly cache afterAdd faced@1.1.3
+32 verbose afterAdd /home/pawan/.npm/faced/1.1.3/package/package.json not in flight; writing
+33 verbose afterAdd /home/pawan/.npm/faced/1.1.3/package/package.json written
+34 silly install resolved [ { name: 'faced',
+34 silly install resolved     version: '1.1.3',
+34 silly install resolved     description: 'light-weight library for face recognition including features such as eyes, nose and mouth.',
+34 silly install resolved     main: 'lib/faced.js',
+34 silly install resolved     directories: { example: 'examples' },
+34 silly install resolved     dependencies: { opencv: '~0.3.1', underscore: '~1.4.4' },
+34 silly install resolved     devDependencies: {},
+34 silly install resolved     scripts: { test: 'echo "Error: no test specified" && exit 1' },
+34 silly install resolved     repository: { type: 'git', url: 'git://github.com/gordalina/faced.git' },
+34 silly install resolved     keywords:
+34 silly install resolved      [ 'face',
+34 silly install resolved        'face detection',
+34 silly install resolved        'face recognition',
+34 silly install resolved        'face identification',
+34 silly install resolved        'detection',
+34 silly install resolved        'recognition' ],
+34 silly install resolved     author: { name: 'Samuel Gordalina' },
+34 silly install resolved     license: 'MIT',
+34 silly install resolved     readme: '# faced\n\nfaced is a light-weight library for face recognition including features such as eyes, nose and mouth. It requires opencv.\n\n![](https://raw.github.com/gordalina/faced/master/images/lenna.features.png)\n\nFace is outlined in **black**, the eyes are **red** & **green** for left and right respectively, the nose is outlined in **white** and the mouth in **blue**.\n\n## Dependencies\n\n### OpenCV\nMake sure you have [OpenCV](http://opencv.org/downloads.html) installed on your machine.\n\nFor MacOS X you can use [Homebrew](http://brew.sh)\n\n```\n$ brew tap homebrew/science\n$ brew install opencv\n```\n\n## Installation\n\n### As a dependency to your project\nJust add `"faced": "1.x",` to your dependencies list in `package.json`.\n\n### Globally\n`npm install -g faced`\n\n## Identify your first face\n\n```javascript\nvar faced = new Faced();\nfaced.detect(\'image.jpg\', function (faces, image, file) {\n  if (!faces) {\n    return console.log("No faces found!");\n  }\n\n  var face = sface[0];\n\n  console.log(\n    "Found a face at %d,%d with dimensions %dx%d",\n    face.getX(),\n    face.getY(),\n    face.getWidth(),\n    face.getHeight()\n  );\n\n  console.log(\n    "What a pretty face, it %s a mouth, it %s a nose, it % a left eye and it %s a right eye!",\n    face.getMouth() ? "has" : "does not have",\n    face.getNose() ? "has" : "does not have",\n    face.getEyeLeft() ? "has" : "does not have",\n    face.getEyeRight() ? "has" : "does not have",\n  );\n});\n```\n\nIts that simple! See the program used to [generate the above image](https://github.com/gordalina/faced/blob/master/examples/identify.js)\n\n## API\n\n### Faced.detect(source, function, context)\n\nLoads an image from `source` which can be a file path or a buffer and executes `function` upon completion.\n\nThe callback function expects a prototype like `function (faces, image, file) { }`, where the first is an array of `Face`, the second is a `Matrix` [object from opencv](https://npmjs.org/package/opencv#readme) and the third is the path of the image.\n\nIn case of error the arguments `faces` and `image` will be `undefined`.\n\n### Class `Feature`\n - `Feature.getX()` Returns the upper left corner X position of the face\n - `Feature.getY()` Returns the upper left corner Y position of the face\n - `Feature.getX2()` Returns the lower right corner X position of the face\n - `Feature.getY2()` Returns the lower right conrner Y position of the face\n - `Feature.getWidth()` Returns the width\n - `Feature.getHeight()` Returns the height\n - `Feature.intersect(Feature)` Returns the percentage of shared spaced that the current feature has with the given argument Feature. *Although this is used internally it might be useful for client usage.*\n\n### Class `Face` (extends `Feature`)\n\nAll of the following method1s return an instance of `Feture` or `undefined` if it could not detect.\n\n - `Face.getMouth()`\n - `Face.getNose()`\n - `Face.getEyeLeft()`\n - `Face.getEyeRight()`\n\nOther significant methods\n\n - `Face.getFeature(name)` Returns a feature by name. Possible names are: `mouth`, `nose`, `eyeLeft` and `eyeRight`.\n - `Face.getFeatures()` Returns an array of `Feature` that the instance has detected.\n - `Face.getFeatureCount()` Returns the number of detected features.\n\n## Examples\n\n```bash\n$ node examples/identify.js images/lenna.png\n```\n\nThen open `images/lenna.features.png` on your favourite image viewer.\n\n## Information\n\n#### License\n\nfaced is licensed under the [MIT license](http://opensource.org/licenses/MIT)\n\n#### Copyright\n\nCopyright (c) 2013, Samuel Gordalina <samuel.gordalina@gmail.com>\n',
+34 silly install resolved     readmeFilename: 'README.md',
+34 silly install resolved     bugs: { url: 'https://github.com/gordalina/faced/issues' },
+34 silly install resolved     _id: 'faced@1.1.3',
+34 silly install resolved     dist:
+34 silly install resolved      { shasum: 'd4cf2202ba66f9065afb5ccc6883ae4b37d39bcb',
+34 silly install resolved        tarball: 'http://registry.npmjs.org/faced/-/faced-1.1.3.tgz' },
+34 silly install resolved     _from: 'faced@*',
+34 silly install resolved     _npmVersion: '1.2.32',
+34 silly install resolved     _npmUser: { name: 'gordalina', email: 'samuel.gordalina@gmail.com' },
+34 silly install resolved     maintainers: [ [Object] ],
+34 silly install resolved     _shasum: 'd4cf2202ba66f9065afb5ccc6883ae4b37d39bcb',
+34 silly install resolved     _resolved: 'https://registry.npmjs.org/faced/-/faced-1.1.3.tgz',
+34 silly install resolved     homepage: 'https://github.com/gordalina/faced#readme' } ]
+35 info install faced@1.1.3 into /usr/local/lib
+36 info installOne faced@1.1.3
+37 verbose installOne of faced to /usr/local/lib not in flight; installing
+38 verbose lock using /home/pawan/.npm/_locks/faced-1fe4084298122fc7.lock for /usr/local/lib/node_modules/faced
+39 silly install write writing faced 1.1.3 to /usr/local/lib/node_modules/faced
+40 verbose unbuild lib/node_modules/faced
+41 silly gentlyRm /usr/local/lib/node_modules/faced is being purged from base /usr/local
+42 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced
+43 verbose tar unpack /home/pawan/.npm/faced/1.1.3/package.tgz
+44 verbose tar unpacking to /usr/local/lib/node_modules/faced
+45 silly gentlyRm /usr/local/lib/node_modules/faced is being purged
+46 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced
+47 silly gunzTarPerm modes [ '775', '664' ]
+48 silly gunzTarPerm extractEntry package.json
+49 silly gunzTarPerm modified mode [ 'package.json', 420, 436 ]
+50 silly gunzTarPerm extractEntry .npmignore
+51 silly gunzTarPerm modified mode [ '.npmignore', 420, 436 ]
+52 silly gunzTarPerm extractEntry README.md
+53 silly gunzTarPerm modified mode [ 'README.md', 420, 436 ]
+54 silly gunzTarPerm extractEntry LICENSE
+55 silly gunzTarPerm modified mode [ 'LICENSE', 420, 436 ]
+56 silly gunzTarPerm extractEntry examples/identify.js
+57 silly gunzTarPerm modified mode [ 'examples/identify.js', 420, 436 ]
+58 silly gunzTarPerm extractEntry images/gioconda.jpg
+59 silly gunzTarPerm modified mode [ 'images/gioconda.jpg', 420, 436 ]
+60 silly gunzTarPerm extractEntry images/lenna.features.png
+61 silly gunzTarPerm modified mode [ 'images/lenna.features.png', 420, 436 ]
+62 silly gunzTarPerm extractEntry images/lenna.png
+63 silly gunzTarPerm modified mode [ 'images/lenna.png', 420, 436 ]
+64 silly gunzTarPerm extractEntry lib/detector.js
+65 silly gunzTarPerm modified mode [ 'lib/detector.js', 420, 436 ]
+66 silly gunzTarPerm extractEntry lib/face.js
+67 silly gunzTarPerm modified mode [ 'lib/face.js', 420, 436 ]
+68 silly gunzTarPerm extractEntry lib/faced.js
+69 silly gunzTarPerm modified mode [ 'lib/faced.js', 420, 436 ]
+70 silly gunzTarPerm extractEntry lib/feature.js
+71 silly gunzTarPerm modified mode [ 'lib/feature.js', 420, 436 ]
+72 verbose write writing to /usr/local/lib/node_modules/faced/package.json
+73 info preinstall faced@1.1.3
+74 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/faced/package.json
+75 silly prepareForInstallMany adding opencv@~0.3.1 from faced dependencies
+76 silly prepareForInstallMany adding underscore@~1.4.4 from faced dependencies
+77 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/faced/package.json
+78 silly cache add args [ 'opencv@~0.3.1', null ]
+79 verbose cache add spec opencv@~0.3.1
+80 silly cache add args [ 'underscore@~1.4.4', null ]
+81 verbose cache add spec underscore@~1.4.4
+82 silly cache add parsed spec Result {
+82 silly cache add   raw: 'opencv@~0.3.1',
+82 silly cache add   scope: null,
+82 silly cache add   name: 'opencv',
+82 silly cache add   rawSpec: '~0.3.1',
+82 silly cache add   spec: '>=0.3.1 <0.4.0',
+82 silly cache add   type: 'range' }
+83 silly addNamed opencv@>=0.3.1 <0.4.0
+84 verbose addNamed ">=0.3.1 <0.4.0" is a valid semver range for opencv
+85 silly addNameRange { name: 'opencv', range: '>=0.3.1 <0.4.0', hasData: false }
+86 silly mapToRegistry name opencv
+87 silly mapToRegistry using default registry
+88 silly mapToRegistry registry https://registry.npmjs.org/
+89 silly mapToRegistry uri https://registry.npmjs.org/opencv
+90 verbose addNameRange registry:https://registry.npmjs.org/opencv not in flight; fetching
+91 silly cache add parsed spec Result {
+91 silly cache add   raw: 'underscore@~1.4.4',
+91 silly cache add   scope: null,
+91 silly cache add   name: 'underscore',
+91 silly cache add   rawSpec: '~1.4.4',
+91 silly cache add   spec: '>=1.4.4 <1.5.0',
+91 silly cache add   type: 'range' }
+92 silly addNamed underscore@>=1.4.4 <1.5.0
+93 verbose addNamed ">=1.4.4 <1.5.0" is a valid semver range for underscore
+94 silly addNameRange { name: 'underscore', range: '>=1.4.4 <1.5.0', hasData: false }
+95 silly mapToRegistry name underscore
+96 silly mapToRegistry using default registry
+97 silly mapToRegistry registry https://registry.npmjs.org/
+98 silly mapToRegistry uri https://registry.npmjs.org/underscore
+99 verbose addNameRange registry:https://registry.npmjs.org/underscore not in flight; fetching
+100 verbose request uri https://registry.npmjs.org/opencv
+101 verbose request no auth needed
+102 info attempt registry request try #1 at 1:05:07 AM
+103 verbose etag "87ZP2I7YPUTXBVHPV6PN01J9R"
+104 http request GET https://registry.npmjs.org/opencv
+105 verbose request uri https://registry.npmjs.org/underscore
+106 verbose request no auth needed
+107 info attempt registry request try #1 at 1:05:07 AM
+108 verbose etag "86N4VTQ6LWF71TWEBEBXJB5NV"
+109 http request GET https://registry.npmjs.org/underscore
+110 http 304 https://registry.npmjs.org/underscore
+111 silly get cb [ 304,
+111 silly get   { date: 'Sat, 28 Nov 2015 19:35:08 GMT',
+111 silly get     via: '1.1 varnish',
+111 silly get     'cache-control': 'max-age=60',
+111 silly get     etag: '"86N4VTQ6LWF71TWEBEBXJB5NV"',
+111 silly get     age: '24',
+111 silly get     connection: 'keep-alive',
+111 silly get     'x-served-by': 'cache-jfk1020-JFK',
+111 silly get     'x-cache': 'HIT',
+111 silly get     'x-cache-hits': '1',
+111 silly get     'x-timer': 'S1448739308.492025,VS0,VE1',
+111 silly get     vary: 'Accept' } ]
+112 verbose etag https://registry.npmjs.org/underscore from cache
+113 verbose get saving underscore to /home/pawan/.npm/registry.npmjs.org/underscore/.cache.json
+114 http 304 https://registry.npmjs.org/opencv
+115 silly get cb [ 304,
+115 silly get   { date: 'Sat, 28 Nov 2015 19:35:08 GMT',
+115 silly get     via: '1.1 varnish',
+115 silly get     'cache-control': 'max-age=60',
+115 silly get     etag: '"87ZP2I7YPUTXBVHPV6PN01J9R"',
+115 silly get     age: '0',
+115 silly get     connection: 'keep-alive',
+115 silly get     'x-served-by': 'cache-jfk1022-JFK',
+115 silly get     'x-cache': 'HIT',
+115 silly get     'x-cache-hits': '1',
+115 silly get     'x-timer': 'S1448739308.484606,VS0,VE19',
+115 silly get     vary: 'Accept' } ]
+116 verbose etag https://registry.npmjs.org/opencv from cache
+117 verbose get saving opencv to /home/pawan/.npm/registry.npmjs.org/opencv/.cache.json
+118 silly addNameRange number 2 { name: 'underscore', range: '>=1.4.4 <1.5.0', hasData: true }
+119 silly addNameRange versions [ 'underscore',
+119 silly addNameRange   [ '1.0.3',
+119 silly addNameRange     '1.0.4',
+119 silly addNameRange     '1.1.0',
+119 silly addNameRange     '1.1.1',
+119 silly addNameRange     '1.1.2',
+119 silly addNameRange     '1.1.3',
+119 silly addNameRange     '1.1.4',
+119 silly addNameRange     '1.1.5',
+119 silly addNameRange     '1.1.6',
+119 silly addNameRange     '1.1.7',
+119 silly addNameRange     '1.2.0',
+119 silly addNameRange     '1.2.1',
+119 silly addNameRange     '1.2.2',
+119 silly addNameRange     '1.2.3',
+119 silly addNameRange     '1.2.4',
+119 silly addNameRange     '1.3.0',
+119 silly addNameRange     '1.3.1',
+119 silly addNameRange     '1.3.2',
+119 silly addNameRange     '1.3.3',
+119 silly addNameRange     '1.4.0',
+119 silly addNameRange     '1.4.1',
+119 silly addNameRange     '1.4.2',
+119 silly addNameRange     '1.4.3',
+119 silly addNameRange     '1.4.4',
+119 silly addNameRange     '1.5.0',
+119 silly addNameRange     '1.5.1',
+119 silly addNameRange     '1.5.2',
+119 silly addNameRange     '1.6.0',
+119 silly addNameRange     '1.7.0',
+119 silly addNameRange     '1.8.0',
+119 silly addNameRange     '1.8.1',
+119 silly addNameRange     '1.8.2',
+119 silly addNameRange     '1.8.3' ] ]
+120 silly addNamed underscore@1.4.4
+121 verbose addNamed "1.4.4" is a plain semver version for underscore
+122 silly cache afterAdd underscore@1.4.4
+123 verbose afterAdd /home/pawan/.npm/underscore/1.4.4/package/package.json not in flight; writing
+124 silly addNameRange number 2 { name: 'opencv', range: '>=0.3.1 <0.4.0', hasData: true }
+125 silly addNameRange versions [ 'opencv',
+125 silly addNameRange   [ '0.0.1',
+125 silly addNameRange     '0.0.2',
+125 silly addNameRange     '0.0.3',
+125 silly addNameRange     '0.0.4',
+125 silly addNameRange     '0.0.5',
+125 silly addNameRange     '0.0.6',
+125 silly addNameRange     '0.0.7',
+125 silly addNameRange     '0.0.8',
+125 silly addNameRange     '0.0.9',
+125 silly addNameRange     '0.0.10',
+125 silly addNameRange     '0.0.11',
+125 silly addNameRange     '0.0.12',
+125 silly addNameRange     '0.1.0',
+125 silly addNameRange     '0.2.0',
+125 silly addNameRange     '0.3.0',
+125 silly addNameRange     '0.3.1',
+125 silly addNameRange     '0.4.0',
+125 silly addNameRange     '0.5.0',
+125 silly addNameRange     '0.6.0',
+125 silly addNameRange     '0.7.0',
+125 silly addNameRange     '1.0.0',
+125 silly addNameRange     '2.0.0',
+125 silly addNameRange     '3.0.0',
+125 silly addNameRange     '3.1.0',
+125 silly addNameRange     '3.2.0',
+125 silly addNameRange     '4.0.0' ] ]
+126 silly addNamed opencv@0.3.1
+127 verbose addNamed "0.3.1" is a plain semver version for opencv
+128 verbose afterAdd /home/pawan/.npm/underscore/1.4.4/package/package.json written
+129 silly cache afterAdd opencv@0.3.1
+130 verbose afterAdd /home/pawan/.npm/opencv/0.3.1/package/package.json not in flight; writing
+131 verbose afterAdd /home/pawan/.npm/opencv/0.3.1/package/package.json written
+132 silly install resolved [ { name: 'underscore',
+132 silly install resolved     description: 'JavaScript\'s functional programming helper library.',
+132 silly install resolved     homepage: 'http://underscorejs.org',
+132 silly install resolved     keywords: [ 'util', 'functional', 'server', 'client', 'browser' ],
+132 silly install resolved     author: { name: 'Jeremy Ashkenas', email: 'jeremy@documentcloud.org' },
+132 silly install resolved     repository:
+132 silly install resolved      { type: 'git',
+132 silly install resolved        url: 'git://github.com/documentcloud/underscore.git' },
+132 silly install resolved     main: 'underscore.js',
+132 silly install resolved     version: '1.4.4',
+132 silly install resolved     devDependencies: { phantomjs: '0.2.2' },
+132 silly install resolved     scripts: { test: 'phantomjs test/vendor/runner.js test/index.html?noglobals=true' },
+132 silly install resolved     _id: 'underscore@1.4.4',
+132 silly install resolved     dist:
+132 silly install resolved      { shasum: '61a6a32010622afa07963bf325203cf12239d604',
+132 silly install resolved        tarball: 'http://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz' },
+132 silly install resolved     _npmVersion: '1.1.63',
+132 silly install resolved     _npmUser: { name: 'jashkenas', email: 'jashkenas@gmail.com' },
+132 silly install resolved     maintainers: [ [Object] ],
+132 silly install resolved     directories: {},
+132 silly install resolved     _shasum: '61a6a32010622afa07963bf325203cf12239d604',
+132 silly install resolved     _resolved: 'https://registry.npmjs.org/underscore/-/underscore-1.4.4.tgz',
+132 silly install resolved     _from: 'underscore@>=1.4.4 <1.5.0',
+132 silly install resolved     bugs: { url: 'https://github.com/documentcloud/underscore/issues' },
+132 silly install resolved     readme: 'ERROR: No README data found!' },
+132 silly install resolved   { name: 'opencv',
+132 silly install resolved     description: 'Node Bindings to OpenCV',
+132 silly install resolved     author: { name: 'Peter Braden', email: 'peterbraden@peterbraden.co.uk' },
+132 silly install resolved     dependencies: { buffers: '0.1.1' },
+132 silly install resolved     version: '0.3.1',
+132 silly install resolved     devDependencies: { vows: '*' },
+132 silly install resolved     engine: 'node >= 0.4.1',
+132 silly install resolved     scripts:
+132 silly install resolved      { preinstall: 'node-gyp clean rebuild',
+132 silly install resolved        test: 'vows test/unit.js' },
+132 silly install resolved     keywords: [ 'opencv', 'computer', 'vision', 'quadrocopter' ],
+132 silly install resolved     main: './lib/opencv',
+132 silly install resolved     _id: 'opencv@0.3.1',
+132 silly install resolved     dist:
+132 silly install resolved      { shasum: 'f6aa03ee52ac6acbf9d5385e98df00e836263d7d',
+132 silly install resolved        tarball: 'http://registry.npmjs.org/opencv/-/opencv-0.3.1.tgz' },
+132 silly install resolved     _npmVersion: '1.1.63',
+132 silly install resolved     _npmUser: { name: 'peterbraden', email: 'peterbraden@peterbraden.co.uk' },
+132 silly install resolved     maintainers: [ [Object] ],
+132 silly install resolved     directories: {},
+132 silly install resolved     _shasum: 'f6aa03ee52ac6acbf9d5385e98df00e836263d7d',
+132 silly install resolved     _resolved: 'https://registry.npmjs.org/opencv/-/opencv-0.3.1.tgz',
+132 silly install resolved     _from: 'opencv@>=0.3.1 <0.4.0',
+132 silly install resolved     readme: 'ERROR: No README data found!' } ]
+133 info install underscore@1.4.4 into /usr/local/lib/node_modules/faced
+134 info install opencv@0.3.1 into /usr/local/lib/node_modules/faced
+135 info installOne underscore@1.4.4
+136 verbose installOne of underscore to /usr/local/lib/node_modules/faced not in flight; installing
+137 info installOne opencv@0.3.1
+138 verbose installOne of opencv to /usr/local/lib/node_modules/faced not in flight; installing
+139 verbose lock using /home/pawan/.npm/_locks/underscore-95ef18ed73403316.lock for /usr/local/lib/node_modules/faced/node_modules/underscore
+140 verbose lock using /home/pawan/.npm/_locks/opencv-fd9deb3fa60f3279.lock for /usr/local/lib/node_modules/faced/node_modules/opencv
+141 silly install write writing underscore 1.4.4 to /usr/local/lib/node_modules/faced/node_modules/underscore
+142 silly install write writing opencv 0.3.1 to /usr/local/lib/node_modules/faced/node_modules/opencv
+143 verbose unbuild lib/node_modules/faced/node_modules/underscore
+144 verbose unbuild lib/node_modules/faced/node_modules/opencv
+145 silly gentlyRm /usr/local/lib/node_modules/faced/node_modules/underscore is being purged from base /usr/local
+146 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced/node_modules/underscore
+147 silly gentlyRm /usr/local/lib/node_modules/faced/node_modules/opencv is being purged from base /usr/local
+148 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced/node_modules/opencv
+149 verbose tar unpack /home/pawan/.npm/underscore/1.4.4/package.tgz
+150 verbose tar unpacking to /usr/local/lib/node_modules/faced/node_modules/underscore
+151 silly gentlyRm /usr/local/lib/node_modules/faced/node_modules/underscore is being purged
+152 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced/node_modules/underscore
+153 verbose tar unpack /home/pawan/.npm/opencv/0.3.1/package.tgz
+154 verbose tar unpacking to /usr/local/lib/node_modules/faced/node_modules/opencv
+155 silly gentlyRm /usr/local/lib/node_modules/faced/node_modules/opencv is being purged
+156 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced/node_modules/opencv
+157 silly gunzTarPerm modes [ '775', '664' ]
+158 silly gunzTarPerm modes [ '775', '664' ]
+159 silly gunzTarPerm extractEntry package.json
+160 silly gunzTarPerm modified mode [ 'package.json', 420, 436 ]
+161 silly gunzTarPerm extractEntry package.json
+162 silly gunzTarPerm modified mode [ 'package.json', 493, 509 ]
+163 silly gunzTarPerm extractEntry .npmignore
+164 silly gunzTarPerm modified mode [ '.npmignore', 420, 436 ]
+165 silly gunzTarPerm extractEntry README.md
+166 silly gunzTarPerm modified mode [ 'README.md', 420, 436 ]
+167 silly gunzTarPerm extractEntry .npmignore
+168 silly gunzTarPerm modified mode [ '.npmignore', 493, 509 ]
+169 silly gunzTarPerm extractEntry README.md
+170 silly gunzTarPerm modified mode [ 'README.md', 493, 509 ]
+171 silly gunzTarPerm extractEntry LICENSE
+172 silly gunzTarPerm modified mode [ 'LICENSE', 420, 436 ]
+173 silly gunzTarPerm extractEntry underscore-min.js
+174 silly gunzTarPerm modified mode [ 'underscore-min.js', 420, 436 ]
+175 silly gunzTarPerm extractEntry Dockerfile
+176 silly gunzTarPerm modified mode [ 'Dockerfile', 420, 436 ]
+177 silly gunzTarPerm extractEntry .package.json.un~
+178 silly gunzTarPerm modified mode [ '.package.json.un~', 493, 509 ]
+179 silly gunzTarPerm extractEntry underscore.js
+180 silly gunzTarPerm modified mode [ 'underscore.js', 420, 436 ]
+181 silly gunzTarPerm extractEntry .README.md.un~
+182 silly gunzTarPerm modified mode [ '.README.md.un~', 493, 509 ]
+183 silly gunzTarPerm extractEntry .temp.coffee.un~
+184 silly gunzTarPerm modified mode [ '.temp.coffee.un~', 420, 436 ]
+185 silly gunzTarPerm extractEntry index.js
+186 silly gunzTarPerm modified mode [ 'index.js', 420, 436 ]
+187 silly gunzTarPerm extractEntry .travis.yml
+188 silly gunzTarPerm modified mode [ '.travis.yml', 420, 436 ]
+189 silly gunzTarPerm extractEntry .temp.js.un~
+190 silly gunzTarPerm modified mode [ '.temp.js.un~', 420, 436 ]
+191 silly gunzTarPerm extractEntry .travis.yml
+192 silly gunzTarPerm modified mode [ '.travis.yml', 493, 509 ]
+193 silly gunzTarPerm extractEntry index.html
+194 silly gunzTarPerm modified mode [ 'index.html', 420, 436 ]
+195 silly gunzTarPerm extractEntry favicon.ico
+196 silly gunzTarPerm modified mode [ 'favicon.ico', 420, 436 ]
+197 silly gunzTarPerm extractEntry binding.gyp
+198 silly gunzTarPerm modified mode [ 'binding.gyp', 493, 509 ]
+199 silly gunzTarPerm extractEntry data/haarcascade_mcs_eyepair_big.xml
+200 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_eyepair_big.xml', 493, 509 ]
+201 silly gunzTarPerm extractEntry CONTRIBUTING.md
+202 silly gunzTarPerm modified mode [ 'CONTRIBUTING.md', 420, 436 ]
+203 silly gunzTarPerm extractEntry CNAME
+204 silly gunzTarPerm modified mode [ 'CNAME', 420, 436 ]
+205 silly gunzTarPerm extractEntry data/haarcascade_eye.xml
+206 silly gunzTarPerm modified mode [ 'data/haarcascade_eye.xml', 493, 509 ]
+207 silly gunzTarPerm extractEntry data/haarcascade_frontalface_alt.xml
+208 silly gunzTarPerm modified mode [ 'data/haarcascade_frontalface_alt.xml', 493, 509 ]
+209 verbose write writing to /usr/local/lib/node_modules/faced/node_modules/underscore/package.json
+210 info preinstall underscore@1.4.4
+211 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/faced/node_modules/underscore/package.json
+212 verbose readDependencies loading dependencies from /usr/local/lib/node_modules/faced/node_modules/underscore/package.json
+213 silly install resolved []
+214 verbose about to build /usr/local/lib/node_modules/faced/node_modules/underscore
+215 info build /usr/local/lib/node_modules/faced/node_modules/underscore
+216 info linkStuff underscore@1.4.4
+217 silly linkStuff underscore@1.4.4 has /usr/local/lib/node_modules/faced/node_modules as its parent node_modules
+218 silly linkStuff underscore@1.4.4 is part of a global install
+219 silly linkStuff underscore@1.4.4 is installed into a global node_modules
+220 silly gunzTarPerm extractEntry data/haarcascade_frontalface_alt2.xml
+221 silly gunzTarPerm modified mode [ 'data/haarcascade_frontalface_alt2.xml', 493, 509 ]
+222 verbose linkBins underscore@1.4.4
+223 verbose linkMans underscore@1.4.4
+224 verbose rebuildBundles underscore@1.4.4
+225 info install underscore@1.4.4
+226 info postinstall underscore@1.4.4
+227 verbose unlock done using /home/pawan/.npm/_locks/underscore-95ef18ed73403316.lock for /usr/local/lib/node_modules/faced/node_modules/underscore
+228 silly gunzTarPerm extractEntry data/haarcascade_frontalface_alt_tree.xml
+229 silly gunzTarPerm modified mode [ 'data/haarcascade_frontalface_alt_tree.xml', 493, 509 ]
+230 silly gunzTarPerm extractEntry data/haarcascade_frontalface_default.xml
+231 silly gunzTarPerm modified mode [ 'data/haarcascade_frontalface_default.xml', 493, 509 ]
+232 silly gunzTarPerm extractEntry data/haarcascade_fullbody.xml
+233 silly gunzTarPerm modified mode [ 'data/haarcascade_fullbody.xml', 493, 509 ]
+234 silly gunzTarPerm extractEntry data/haarcascade_lefteye_2splits.xml
+235 silly gunzTarPerm modified mode [ 'data/haarcascade_lefteye_2splits.xml', 493, 509 ]
+236 silly gunzTarPerm extractEntry data/haarcascade_lowerbody.xml
+237 silly gunzTarPerm modified mode [ 'data/haarcascade_lowerbody.xml', 493, 509 ]
+238 silly gunzTarPerm extractEntry data/haarcascade_eye_tree_eyeglasses.xml
+239 silly gunzTarPerm modified mode [ 'data/haarcascade_eye_tree_eyeglasses.xml', 493, 509 ]
+240 silly gunzTarPerm extractEntry data/haarcascade_mcs_eyepair_small.xml
+241 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_eyepair_small.xml', 493, 509 ]
+242 silly gunzTarPerm extractEntry data/haarcascade_mcs_lefteye.xml
+243 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_lefteye.xml', 493, 509 ]
+244 silly gunzTarPerm extractEntry data/haarcascade_mcs_mouth.xml
+245 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_mouth.xml', 493, 509 ]
+246 silly gunzTarPerm extractEntry data/haarcascade_mcs_nose.xml
+247 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_nose.xml', 493, 509 ]
+248 silly gunzTarPerm extractEntry data/haarcascade_mcs_righteye.xml
+249 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_righteye.xml', 493, 509 ]
+250 silly gunzTarPerm extractEntry data/haarcascade_mcs_upperbody.xml
+251 silly gunzTarPerm modified mode [ 'data/haarcascade_mcs_upperbody.xml', 493, 509 ]
+252 silly gunzTarPerm extractEntry data/haarcascade_profileface.xml
+253 silly gunzTarPerm modified mode [ 'data/haarcascade_profileface.xml', 493, 509 ]
+254 silly gunzTarPerm extractEntry data/haarcascade_righteye_2splits.xml
+255 silly gunzTarPerm modified mode [ 'data/haarcascade_righteye_2splits.xml', 493, 509 ]
+256 silly gunzTarPerm extractEntry data/haarcascade_upperbody.xml
+257 silly gunzTarPerm modified mode [ 'data/haarcascade_upperbody.xml', 493, 509 ]
+258 silly gunzTarPerm extractEntry ..travis.yml.un~
+259 silly gunzTarPerm modified mode [ '..travis.yml.un~', 493, 509 ]
+260 silly gunzTarPerm extractEntry examples/take-face-pics.js
+261 silly gunzTarPerm modified mode [ 'examples/take-face-pics.js', 420, 436 ]
+262 silly gunzTarPerm extractEntry examples/quad-crosses.js
+263 silly gunzTarPerm modified mode [ 'examples/quad-crosses.js', 493, 509 ]
+264 silly gunzTarPerm extractEntry examples/addweighted.js
+265 silly gunzTarPerm modified mode [ 'examples/addweighted.js', 493, 509 ]
+266 silly gunzTarPerm extractEntry examples/camera.js
+267 silly gunzTarPerm modified mode [ 'examples/camera.js', 493, 509 ]
+268 silly gunzTarPerm extractEntry examples/motion-track.js
+269 silly gunzTarPerm modified mode [ 'examples/motion-track.js', 420, 436 ]
+270 silly gunzTarPerm extractEntry examples/salt.js
+271 silly gunzTarPerm modified mode [ 'examples/salt.js', 493, 509 ]
+272 silly gunzTarPerm extractEntry examples/color_filter.js
+273 silly gunzTarPerm modified mode [ 'examples/color_filter.js', 420, 436 ]
+274 silly gunzTarPerm extractEntry examples/contours.js
+275 silly gunzTarPerm modified mode [ 'examples/contours.js', 493, 509 ]
+276 silly gunzTarPerm extractEntry examples/convert_image.js
+277 silly gunzTarPerm modified mode [ 'examples/convert_image.js', 493, 509 ]
+278 silly gunzTarPerm extractEntry examples/detect-shapes.js
+279 silly gunzTarPerm modified mode [ 'examples/detect-shapes.js', 493, 509 ]
+280 silly gunzTarPerm extractEntry examples/face-proxy.js
+281 silly gunzTarPerm modified mode [ 'examples/face-proxy.js', 493, 509 ]
+282 silly gunzTarPerm extractEntry examples/face_detection.js
+283 silly gunzTarPerm modified mode [ 'examples/face_detection.js', 493, 509 ]
+284 silly gunzTarPerm extractEntry examples/Face.js
+285 silly gunzTarPerm modified mode [ 'examples/Face.js', 493, 509 ]
+286 silly gunzTarPerm extractEntry examples/over_text.png
+287 silly gunzTarPerm modified mode [ 'examples/over_text.png', 493, 509 ]
+288 silly gunzTarPerm extractEntry examples/.make-example-files.sh.un~
+289 silly gunzTarPerm modified mode [ 'examples/.make-example-files.sh.un~', 493, 509 ]
+290 silly gunzTarPerm extractEntry examples/make-example-files.sh
+291 silly gunzTarPerm modified mode [ 'examples/make-example-files.sh', 493, 509 ]
+292 silly gunzTarPerm extractEntry examples/mona.png
+293 silly gunzTarPerm modified mode [ 'examples/mona.png', 493, 509 ]
+294 silly gunzTarPerm extractEntry examples/coin1.jpg
+295 silly gunzTarPerm modified mode [ 'examples/coin1.jpg', 420, 436 ]
+296 silly gunzTarPerm extractEntry examples/motion.mov
+297 silly gunzTarPerm modified mode [ 'examples/motion.mov', 420, 436 ]
+298 silly gunzTarPerm extractEntry examples/coin2.jpg
+299 silly gunzTarPerm modified mode [ 'examples/coin2.jpg', 420, 436 ]
+300 silly gunzTarPerm extractEntry examples/.take-face-pics.js.un~
+301 silly gunzTarPerm modified mode [ 'examples/.take-face-pics.js.un~', 420, 436 ]
+302 silly gunzTarPerm extractEntry examples/quads.jpg
+303 silly gunzTarPerm modified mode [ 'examples/quads.jpg', 420, 436 ]
+304 silly gunzTarPerm extractEntry examples/.motion-track.js.un~
+305 silly gunzTarPerm modified mode [ 'examples/.motion-track.js.un~', 420, 436 ]
+306 silly gunzTarPerm extractEntry examples/shapes.jpg
+307 silly gunzTarPerm modified mode [ 'examples/shapes.jpg', 420, 436 ]
+308 silly gunzTarPerm extractEntry examples/stuff.png
+309 silly gunzTarPerm modified mode [ 'examples/stuff.png', 493, 509 ]
+310 silly gunzTarPerm extractEntry examples/.camera.js.un~
+311 silly gunzTarPerm modified mode [ 'examples/.camera.js.un~', 493, 509 ]
+312 silly gunzTarPerm extractEntry index.html
+313 silly gunzTarPerm modified mode [ 'index.html', 493, 509 ]
+314 silly gunzTarPerm extractEntry lib/bindings.js
+315 silly gunzTarPerm modified mode [ 'lib/bindings.js', 493, 509 ]
+316 silly gunzTarPerm extractEntry lib/opencv.js
+317 silly gunzTarPerm modified mode [ 'lib/opencv.js', 493, 509 ]
+318 silly gunzTarPerm extractEntry lib/.opencv.js.un~
+319 silly gunzTarPerm modified mode [ 'lib/.opencv.js.un~', 493, 509 ]
+320 silly gunzTarPerm extractEntry MIT-LICENSE.txt
+321 silly gunzTarPerm modified mode [ 'MIT-LICENSE.txt', 420, 436 ]
+322 silly gunzTarPerm extractEntry out.png
+323 silly gunzTarPerm modified mode [ 'out.png', 420, 436 ]
+324 silly gunzTarPerm extractEntry .binding.gyp.un~
+325 silly gunzTarPerm modified mode [ '.binding.gyp.un~', 493, 509 ]
+326 silly gunzTarPerm extractEntry ..gitignore.un~
+327 silly gunzTarPerm modified mode [ '..gitignore.un~', 493, 509 ]
+328 silly gunzTarPerm extractEntry smoke/smoketest.js
+329 silly gunzTarPerm modified mode [ 'smoke/smoketest.js', 493, 509 ]
+330 silly gunzTarPerm extractEntry smoke/.smoke.sh.un~
+331 silly gunzTarPerm modified mode [ 'smoke/.smoke.sh.un~', 493, 509 ]
+332 silly gunzTarPerm extractEntry smoke/.smoketest.js.un~
+333 silly gunzTarPerm modified mode [ 'smoke/.smoketest.js.un~', 493, 509 ]
+334 silly gunzTarPerm extractEntry smoke/smoke.sh
+335 silly gunzTarPerm modified mode [ 'smoke/smoke.sh', 493, 509 ]
+336 silly gunzTarPerm extractEntry src/CascadeClassifierWrap.cc
+337 silly gunzTarPerm modified mode [ 'src/CascadeClassifierWrap.cc', 493, 509 ]
+338 silly gunzTarPerm extractEntry src/.CamShift.cc.un~
+339 silly gunzTarPerm modified mode [ 'src/.CamShift.cc.un~', 420, 436 ]
+340 silly gunzTarPerm extractEntry src/.CascadeClassifierWrap.cc.un~
+341 silly gunzTarPerm modified mode [ 'src/.CascadeClassifierWrap.cc.un~', 493, 509 ]
+342 silly gunzTarPerm extractEntry src/.CascadeClassifierWrap.h.un~
+343 silly gunzTarPerm modified mode [ 'src/.CascadeClassifierWrap.h.un~', 493, 509 ]
+344 silly gunzTarPerm extractEntry src/.FaceRecognizer.cc.un~
+345 silly gunzTarPerm modified mode [ 'src/.FaceRecognizer.cc.un~', 420, 436 ]
+346 silly gunzTarPerm extractEntry src/.FaceRecognizer.h.un~
+347 silly gunzTarPerm modified mode [ 'src/.FaceRecognizer.h.un~', 420, 436 ]
+348 silly gunzTarPerm extractEntry src/.HighGUI.cc.un~
+349 silly gunzTarPerm modified mode [ 'src/.HighGUI.cc.un~', 420, 436 ]
+350 silly gunzTarPerm extractEntry src/.HighGUI.h.un~
+351 silly gunzTarPerm modified mode [ 'src/.HighGUI.h.un~', 420, 436 ]
+352 silly gunzTarPerm extractEntry src/.init.cc.un~
+353 silly gunzTarPerm modified mode [ 'src/.init.cc.un~', 493, 509 ]
+354 silly gunzTarPerm extractEntry src/.Matrix.cc.un~
+355 silly gunzTarPerm modified mode [ 'src/.Matrix.cc.un~', 493, 509 ]
+356 silly gunzTarPerm extractEntry src/.Matrix.h.un~
+357 silly gunzTarPerm modified mode [ 'src/.Matrix.h.un~', 493, 509 ]
+358 silly gunzTarPerm extractEntry src/.OpenCV.h.un~
+359 silly gunzTarPerm modified mode [ 'src/.OpenCV.h.un~', 493, 509 ]
+360 silly gunzTarPerm extractEntry src/.VideoCaptureWrap.cc.un~
+361 silly gunzTarPerm modified mode [ 'src/.VideoCaptureWrap.cc.un~', 493, 509 ]
+362 silly gunzTarPerm extractEntry src/.VideoWriter.cc.un~
+363 silly gunzTarPerm modified mode [ 'src/.VideoWriter.cc.un~', 420, 436 ]
+364 silly gunzTarPerm extractEntry src/.VideoWriter.h.un~
+365 silly gunzTarPerm modified mode [ 'src/.VideoWriter.h.un~', 420, 436 ]
+366 silly gunzTarPerm extractEntry src/CamShift.cc
+367 silly gunzTarPerm modified mode [ 'src/CamShift.cc', 420, 436 ]
+368 silly gunzTarPerm extractEntry src/CamShift.h
+369 silly gunzTarPerm modified mode [ 'src/CamShift.h', 420, 436 ]
+370 silly gunzTarPerm extractEntry src/.CamShift.h.un~
+371 silly gunzTarPerm modified mode [ 'src/.CamShift.h.un~', 420, 436 ]
+372 silly gunzTarPerm extractEntry src/CascadeClassifierWrap.h
+373 silly gunzTarPerm modified mode [ 'src/CascadeClassifierWrap.h', 493, 509 ]
+374 silly gunzTarPerm extractEntry src/Contours.cc
+375 silly gunzTarPerm modified mode [ 'src/Contours.cc', 493, 509 ]
+376 silly gunzTarPerm extractEntry src/Contours.h
+377 silly gunzTarPerm modified mode [ 'src/Contours.h', 493, 509 ]
+378 silly gunzTarPerm extractEntry src/FaceRecognizer.cc
+379 silly gunzTarPerm modified mode [ 'src/FaceRecognizer.cc', 420, 436 ]
+380 silly gunzTarPerm extractEntry src/FaceRecognizer.h
+381 silly gunzTarPerm modified mode [ 'src/FaceRecognizer.h', 420, 436 ]
+382 silly gunzTarPerm extractEntry src/HighGUI.cc
+383 silly gunzTarPerm modified mode [ 'src/HighGUI.cc', 420, 436 ]
+384 silly gunzTarPerm extractEntry src/HighGUI.h
+385 silly gunzTarPerm modified mode [ 'src/HighGUI.h', 420, 436 ]
+386 silly gunzTarPerm extractEntry src/init.cc
+387 silly gunzTarPerm modified mode [ 'src/init.cc', 493, 509 ]
+388 silly gunzTarPerm extractEntry src/Matrix.cc
+389 silly gunzTarPerm modified mode [ 'src/Matrix.cc', 493, 509 ]
+390 silly gunzTarPerm extractEntry src/Matrix.h
+391 silly gunzTarPerm modified mode [ 'src/Matrix.h', 493, 509 ]
+392 silly gunzTarPerm extractEntry src/OpenCV.cc
+393 silly gunzTarPerm modified mode [ 'src/OpenCV.cc', 493, 509 ]
+394 silly gunzTarPerm extractEntry src/OpenCV.h
+395 silly gunzTarPerm modified mode [ 'src/OpenCV.h', 493, 509 ]
+396 silly gunzTarPerm extractEntry src/Point.cc
+397 silly gunzTarPerm modified mode [ 'src/Point.cc', 493, 509 ]
+398 silly gunzTarPerm extractEntry src/Point.h
+399 silly gunzTarPerm modified mode [ 'src/Point.h', 493, 509 ]
+400 silly gunzTarPerm extractEntry src/VideoCaptureWrap.cc
+401 silly gunzTarPerm modified mode [ 'src/VideoCaptureWrap.cc', 493, 509 ]
+402 silly gunzTarPerm extractEntry src/VideoCaptureWrap.h
+403 silly gunzTarPerm modified mode [ 'src/VideoCaptureWrap.h', 493, 509 ]
+404 silly gunzTarPerm extractEntry test/unit.js
+405 silly gunzTarPerm modified mode [ 'test/unit.js', 493, 509 ]
+406 silly gunzTarPerm extractEntry test/.temp.js.un~
+407 silly gunzTarPerm modified mode [ 'test/.temp.js.un~', 420, 436 ]
+408 silly gunzTarPerm extractEntry test/.unit.js.un~
+409 silly gunzTarPerm modified mode [ 'test/.unit.js.un~', 493, 509 ]
+410 verbose write writing to /usr/local/lib/node_modules/faced/node_modules/opencv/package.json
+411 info preinstall opencv@0.3.1
+412 verbose unsafe-perm in lifecycle true
+413 info opencv@0.3.1 Failed to exec preinstall script
+414 verbose unlock done using /home/pawan/.npm/_locks/opencv-fd9deb3fa60f3279.lock for /usr/local/lib/node_modules/faced/node_modules/opencv
+415 verbose about to build /usr/local/lib/node_modules/faced
+416 verbose unlock done using /home/pawan/.npm/_locks/faced-1fe4084298122fc7.lock for /usr/local/lib/node_modules/faced
+417 verbose stack Error: opencv@0.3.1 preinstall: `node-gyp clean rebuild`
+417 verbose stack Exit status 1
+417 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:214:16)
+417 verbose stack     at emitTwo (events.js:87:13)
+417 verbose stack     at EventEmitter.emit (events.js:172:7)
+417 verbose stack     at ChildProcess.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+417 verbose stack     at emitTwo (events.js:87:13)
+417 verbose stack     at ChildProcess.emit (events.js:172:7)
+417 verbose stack     at maybeClose (internal/child_process.js:817:16)
+417 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+418 verbose pkgid opencv@0.3.1
+419 verbose cwd /home/pawan/Desktop/git/XOP
+420 error Linux 3.19.0-33-generic
+421 error argv "/usr/local/bin/node" "/usr/local/bin/npm" "install" "-g" "faced"
+422 error node v4.1.1
+423 error npm  v2.14.4
+424 error code ELIFECYCLE
+425 error opencv@0.3.1 preinstall: `node-gyp clean rebuild`
+425 error Exit status 1
+426 error Failed at the opencv@0.3.1 preinstall script 'node-gyp clean rebuild'.
+426 error This is most likely a problem with the opencv package,
+426 error not with npm itself.
+426 error Tell the author that this fails on your system:
+426 error     node-gyp clean rebuild
+426 error You can get their info via:
+426 error     npm owner ls opencv
+426 error There is likely additional logging output above.
+427 verbose exit [ 1, true ]
+428 verbose unbuild lib/node_modules/faced/node_modules/opencv
+429 info preuninstall opencv@0.3.1
+430 info uninstall opencv@0.3.1
+431 verbose unbuild rmStuff opencv@0.3.1 from /usr/local/lib/node_modules
+432 verbose unbuild rmStuff in /usr/local/lib/node_modules/faced/node_modules
+433 info postuninstall opencv@0.3.1
+434 silly gentlyRm /usr/local/lib/node_modules/faced/node_modules/opencv is being purged from base /usr/local
+435 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced/node_modules/opencv
+436 silly vacuum-fs purging /usr/local/lib/node_modules/faced/node_modules/opencv
+437 silly vacuum-fs quitting because other entries in /usr/local/lib/node_modules/faced/node_modules
+438 verbose unbuild lib/node_modules/faced
+439 info preuninstall faced@1.1.3
+440 info uninstall faced@1.1.3
+441 verbose unbuild rmStuff faced@1.1.3 from /usr/local/lib/node_modules
+442 info postuninstall faced@1.1.3
+443 silly gentlyRm /usr/local/lib/node_modules/faced is being purged from base /usr/local
+444 verbose gentlyRm don't care about contents; nuking /usr/local/lib/node_modules/faced
+445 silly vacuum-fs purging /usr/local/lib/node_modules/faced
+446 silly vacuum-fs quitting because other entries in /usr/local/lib/node_modules

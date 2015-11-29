@@ -1,0 +1,121 @@
+{
+  "data": {
+    "resident": [
+      {
+        "where": null,
+        "createdAt": "2015-11-29T00:57:13.576Z",
+        "updatedAt": "2015-11-29T00:57:13.576Z",
+        "id": 1
+      },
+      {
+        "uid": "919177416996",
+        "name": "Gouresh Ashok Ramrakhyani",
+        "gender": "M",
+        "yob": "1991",
+        "co": "S/O: Ashok Ramrakhyani",
+        "house": "barak 525, room no, 16/17",
+        "street": "near aradhana depareament",
+        "loc": "ulhasnagar-2",
+        "vtc": "Ulhasnagar",
+        "po": "Ulhasnagar-2",
+        "dist": "Thane",
+        "subdist": "Ulhasnagar",
+        "state": "Maharashtra",
+        "pc": "421002",
+        "createdAt": "2015-11-29T01:01:53.829Z",
+        "updatedAt": "2015-11-29T01:01:53.829Z",
+        "id": 2
+      },
+      {
+        "uid": "689081567056",
+        "name": "Lobhas Sudhir Ingle",
+        "gender": "M",
+        "yob": "1991",
+        "co": "S/O: Sudhir Ingle",
+        "house": "546 anant ambarnath farming society",
+        "lm": "near sawant park",
+        "loc": "mahalaxmi nagar",
+        "vtc": "Ambarnath",
+        "po": "Ambernath",
+        "dist": "Thane",
+        "subdist": "Ambarnath",
+        "state": "Maharashtra",
+        "pc": "421501",
+        "createdAt": "2015-11-29T03:45:22.684Z",
+        "updatedAt": "2015-11-29T03:45:22.684Z",
+        "id": 3
+      }
+    ]
+  },
+  "schema": {
+    "resident": {
+      "uid": {
+        "type": "string",
+        "size": 12
+      },
+      "name": {
+        "type": "string"
+      },
+      "yob": {
+        "type": "string"
+      },
+      "gender": {
+        "type": "string",
+        "size": 1
+      },
+      "house": {
+        "type": "string"
+      },
+      "street": {
+        "type": "string"
+      },
+      "loc": {
+        "type": "string"
+      },
+      "vtc": {
+        "type": "string"
+      },
+      "co": {
+        "type": "string"
+      },
+      "po": {
+        "type": "string"
+      },
+      "dist": {
+        "type": "string"
+      },
+      "subdist": {
+        "type": "string"
+      },
+      "state": {
+        "type": "string"
+      },
+      "pc": {
+        "type": "string"
+      },
+      "email": {
+        "type": "string"
+      },
+      "img": {
+        "type": "string"
+      },
+      "id": {
+        "type": "integer",
+        "autoIncrement": true,
+        "primaryKey": true,
+        "unique": true
+      },
+      "createdAt": {
+        "type": "datetime"
+      },
+      "updatedAt": {
+        "type": "datetime"
+      }
+    }
+  },
+  "counters": {
+    "resident": {
+      "id": 3
+    }
+  }
+}
