@@ -5,7 +5,7 @@
     "node": "4.1.1"
   },
   "version": "1.0.0",
-  "description": "a Sails application",
+  "description": "an aadhaar card scanner api",
   "keywords": [],
   "dependencies": {
     "ejs": "~0.8.4",
