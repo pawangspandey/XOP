@@ -1,3 +1,2 @@
-# backendXOP
-
-a [Sails](http://sailsjs.org) application
+# 
+an aadhaar card QR scanner api
